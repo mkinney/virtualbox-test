@@ -15,8 +15,16 @@ jobs:
         wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
         unzip packer_${VER}_linux_amd64.zip
         sudo mv packer /usr/local/bin
-        # ensure we can run packer
+        # get version
         packer --version
+    - name: Install Vagrant
+      run: |
+        export VER="2.2.7"
+        wget https://releases.hashicorp.com/vagrant/${VER}/vagrant_${VER}_linux_amd64.zip
+        unzip vagrant_${VER}_linux_amd64.zip
+        sudo mv vagrant /usr/local/bin
+        # get version
+        vagrant --version
     - name: Install Virtualbox
       run: |
         wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
