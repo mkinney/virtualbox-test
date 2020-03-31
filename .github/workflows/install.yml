@@ -1,0 +1,28 @@
+name: See what we can install
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Packer
+      run: |
+        export VER="1.5.1"
+        wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
+        unzip packer_${VER}_linux_amd64.zip
+        sudo mv packer /usr/local/bin
+        # ensure we can run packer
+        packer --version
+    - name: Install Virtualbox
+      run: |
+        wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+        sudo apt update
+        sudo apt install virtualbox-6.1
+        # get version
+        VBoxManage -v
