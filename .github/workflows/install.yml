@@ -34,3 +34,7 @@ jobs:
         sudo apt install virtualbox-6.1
         # get version
         VBoxManage -v
+    - name: See if we can spin up a box
+      run: |
+        vagrant up
+        vagrant status
