@@ -21,7 +21,7 @@ jobs:
         vagrant --version
     - name: Install Virtualbox
       run: |
-        brew install virtualbox
+        brew cask install virtualbox
         # get version
         VBoxManage --version
     - name: See if we can spin up a box
