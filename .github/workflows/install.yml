@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -25,16 +25,3 @@ jobs:
         sudo mv vagrant /usr/local/bin
         # get version
         vagrant --version
-    - name: Install Virtualbox
-      run: |
-        wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-        sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
-        sudo apt update
-        sudo apt install virtualbox-6.1
-        # get version
-        VBoxManage -v
-    - name: See if we can spin up a box
-      run: |
-        vagrant up
-        vagrant status
