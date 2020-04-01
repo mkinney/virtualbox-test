@@ -16,6 +16,15 @@ jobs:
         packer --version
     - name: Install Vagrant
       run: |
-        brew install vagrant
+        brew cask install vagrant
         # get version
         vagrant --version
+    - name: Install Virtualbox
+      run: |
+        brew install virtualbox
+        # get version
+        VBoxManage --version
+    - name: See if we can spin up a box
+      run: |
+        vagrant up
+        vagrant status
